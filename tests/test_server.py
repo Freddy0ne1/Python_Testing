@@ -66,3 +66,8 @@ def test_tableau_points_accessible_sans_connexion(client):
     response = client.get('/pointsboard')
     assert response.status_code == 200
     assert b'Simply Lift' in response.data
+
+def test_acces_page_reservation_club_valide(client):
+    """La page de réservation doit s'afficher pour un club et une compétition valides"""
+    response = client.get('/book/Spring Festival/Simply Lift')
+    assert response.status_code == 200
