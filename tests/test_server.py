@@ -35,3 +35,14 @@ def test_reservation_impossible_pour_competition_passee(client):
     response = client.post('/showSummary', data={'email': 'john@simplylift.co'})
     assert response.status_code == 200
     assert b'Book Places' not in response.data
+
+
+def test_reservation_plus_de_12_places_est_bloquee(client):
+    """La réservation doit être bloquée si le club demande plus de 12 places"""
+    response = client.post('/purchasePlaces', data={
+        'competition': 'Spring Festival',
+        'club': 'Simply Lift',
+        'places': '15'
+    })
+    assert response.status_code == 200
+    assert b'Vous ne pouvez pas' in response.data
