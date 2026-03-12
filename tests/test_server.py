@@ -46,3 +46,17 @@ def test_reservation_plus_de_12_places_est_bloquee(client):
     })
     assert response.status_code == 200
     assert b'Vous ne pouvez pas' in response.data
+
+
+def test_reservation_bloquee_si_points_insuffisants(client):
+    """La réservation doit être bloquée si le club n'a pas assez de points"""
+    from server import clubs
+    club = [c for c in clubs if c['name'] == 'Simply Lift'][0]
+    points_disponibles = int(club['points'])
+    response = client.post('/purchasePlaces', data={
+        'competition': 'Spring Festival',
+        'club': 'Simply Lift',
+        'places': str(points_disponibles + 1)
+    })
+    assert response.status_code == 200
+    assert b'Vous n&#39;avez pas assez de points' in response.data
