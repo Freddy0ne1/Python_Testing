@@ -77,3 +77,8 @@ def test_deconnexion_redirige_vers_accueil(client):
     """La déconnexion doit rediriger vers la page d'accueil"""
     response = client.get('/logout')
     assert response.status_code == 302
+
+def test_acces_page_accueil(client):
+    """La page d'accueil doit être accessible"""
+    response = client.get('/')
+    assert response.status_code == 200
