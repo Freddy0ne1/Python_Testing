@@ -82,3 +82,9 @@ def test_acces_page_accueil(client):
     """La page d'accueil doit être accessible"""
     response = client.get('/')
     assert response.status_code == 200
+
+
+def test_redirection_si_competition_invalide(client):
+    """La route /book doit rediriger si la compétition n'existe pas"""
+    response = client.get('/book/Competition Inexistante/Simply Lift')
+    assert response.status_code == 302
