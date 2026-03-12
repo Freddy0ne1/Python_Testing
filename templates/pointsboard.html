@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau des points</title>
+</head>
+<body>
+    <h1>Tableau des points des clubs</h1>
+    <ul>
+        {% for club in clubs %}
+        <li>{{ club['name'] }} : {{ club['points'] }} points</li>
+        {% endfor %}
+    </ul>
+    <a href="/">Retour à l'accueil</a>
+</body>
+</html>

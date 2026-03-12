@@ -60,3 +60,9 @@ def test_reservation_bloquee_si_points_insuffisants(client):
     })
     assert response.status_code == 200
     assert b'Vous n&#39;avez pas assez de points' in response.data
+
+def test_tableau_points_accessible_sans_connexion(client):
+    """Le tableau des points doit être accessible sans connexion et afficher les clubs"""
+    response = client.get('/pointsboard')
+    assert response.status_code == 200
+    assert b'Simply Lift' in response.data
