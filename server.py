@@ -1,5 +1,6 @@
 import json
 from flask import Flask,render_template,request,redirect,flash,url_for
+from datetime import datetime
 
 
 def loadClubs():
@@ -16,6 +17,10 @@ def loadCompetitions():
 
 app = Flask(__name__)
 app.secret_key = 'something_special'
+
+@app.context_processor
+def inject_now():
+    return {'now': datetime.now}
 
 competitions = loadCompetitions()
 clubs = loadClubs()
