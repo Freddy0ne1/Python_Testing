@@ -71,3 +71,9 @@ def test_acces_page_reservation_club_valide(client):
     """La page de réservation doit s'afficher pour un club et une compétition valides"""
     response = client.get('/book/Spring Festival/Simply Lift')
     assert response.status_code == 200
+
+
+def test_deconnexion_redirige_vers_accueil(client):
+    """La déconnexion doit rediriger vers la page d'accueil"""
+    response = client.get('/logout')
+    assert response.status_code == 302
