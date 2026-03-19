@@ -31,10 +31,11 @@ def test_points_du_club_sont_deduits_apres_reservation(client):
     assert points_apres == points_avant - 2
 
 def test_reservation_impossible_pour_competition_passee(client):
-    """Le bouton Book Places ne doit pas apparaître pour une compétition passée"""
     response = client.post('/showSummary', data={'email': 'john@simplylift.co'})
     assert response.status_code == 200
-    assert b'Book Places' not in response.data
+    assert b'/book/Spring%20Festival' not in response.data
+    assert b'/book/Fall%20Classic' not in response.data
+    assert b'/book/Summer%20Event' in response.data
 
 
 def test_reservation_plus_de_12_places_est_bloquee(client):
