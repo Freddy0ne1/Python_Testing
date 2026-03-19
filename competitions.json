@@ -10,5 +10,11 @@
             "date": "2020-10-22 13:30:00",
             "numberOfPlaces": "13"
         }
+        ,
+        {
+            "name": "Summer Event",
+            "date": "2027-07-22 13:30:00",
+            "numberOfPlaces": "10"
+        }
     ]
 }
